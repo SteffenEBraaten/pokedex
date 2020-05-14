@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 
+import styled from 'styled-components';
+
+const Sprite = styled.img`
+    width: 5em;
+    heigth: 5em;
+`;
+
 class PokemonCard extends Component {
     state = {
         name: '',
@@ -10,9 +17,8 @@ class PokemonCard extends Component {
     componentDidMount() {
         const {name, url} = this.props;
         const pokemonIndex = url.split('/')[url.split('/').length - 2];
-        const imageUrl = `https://github.com/PokeAPI/sprites/tree/master/sprites/pokemon/${pokemonIndex}.png?raw=true`
-    
-        console.log(imageUrl)
+        const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`
+
         this.setState({
             name,
             imageUrl,
@@ -29,6 +35,9 @@ class PokemonCard extends Component {
                     <h3 className="card-header">
                         {this.state.pokemonIndex}
                     </h3>
+                    <Sprite className="card-img-top rounded mx-auto mt-2"
+                    src={this.state.imageUrl}>
+                    </Sprite>
                     <div className="card-body mx-auto">
                         <h4 className="card-title">
                             {this.state.name
