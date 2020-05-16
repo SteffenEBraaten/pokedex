@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PokemonList from '../pokemon/PokemonList'
 
-class Dashboard extends Component {
+export default class Dashboard extends Component {
     render() {
         return (
             <div className="row">
@@ -13,5 +13,3 @@ class Dashboard extends Component {
         )
     }
 }
-
-export default Dashboard;

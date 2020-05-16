@@ -7,11 +7,13 @@ const Sprite = styled.img`
     heigth: 5em;
 `;
 
-class PokemonCard extends Component {
+export default class PokemonCard extends Component {
     state = {
         name: '',
         imageUrl: '',
         pokemonIndex: '',
+        imageLoading: true,
+        toManyRequests: false
     };
 
     componentDidMount() {
@@ -22,7 +24,7 @@ class PokemonCard extends Component {
         this.setState({
             name,
             imageUrl,
-            pokemonIndex
+            pokemonIndex,
         })
     }
 
@@ -30,14 +32,33 @@ class PokemonCard extends Component {
         
         return (
             <div
-            className='col-md-3 col-sm-6 mb-5'>
+            className='col-md-4 col-sm-6 mb-5'>
                 <div className="card">
                     <h3 className="card-header">
                         {this.state.pokemonIndex}
                     </h3>
+                    {this.state.imageLoading ? (
+                        <div className="spinner-border mx-auto mt-2" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    ) : null}
                     <Sprite className="card-img-top rounded mx-auto mt-2"
-                    src={this.state.imageUrl}>
-                    </Sprite>
+                    src={this.state.imageUrl}
+                    onLoad={() => this.setState({ imageLoading: false })}
+                    onError={() => this.setState({ toManyRequests: true })}
+                    style={
+                        this.state.toManyRequests 
+                        ? {display: "none"} 
+                        : this.state.imageLoading 
+                        ? null 
+                        : {display: "block"}
+                    }
+                    />
+                    {this.state.toManyRequests ? (
+                        <h6 className="mx-auto">
+                            <span className="badge badge-pill badge-danger">To many requests</span>
+                        </h6>
+                    ) : null}
                     <div className="card-body mx-auto">
                         <h4 className="card-title">
                             {this.state.name
@@ -52,5 +73,3 @@ class PokemonCard extends Component {
         )
     }
 }
-
-export default PokemonCard;

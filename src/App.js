@@ -6,7 +6,7 @@ import './App.css';
 import NavBar from './components/layout/NavBar';
 import Dashboard from './components/layout/Dashboard'
 
-function App() {
+export default function App() {
   return (
     <div className="App">
         <NavBar />
@@ -16,5 +16,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
