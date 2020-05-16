@@ -1,8 +1,8 @@
 .navbar {
+  margin-bottom: 4rem;
   background-color: red !important;
 }
 
 .App {
-  padding-top: 4rem;
   min-height: 100vh;
 }
