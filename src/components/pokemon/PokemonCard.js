@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const Sprite = styled.img`
     width: 5em;
     heigth: 5em;
+    display: none;
 `;
 
 export default class PokemonCard extends Component {
@@ -32,7 +33,7 @@ export default class PokemonCard extends Component {
         
         return (
             <div
-            className='col-md-4 col-sm-6 mb-5'>
+            className='col-md-3 col-sm-6 mb-5'>
                 <div className="card">
                     <h3 className="card-header">
                         {this.state.pokemonIndex}
